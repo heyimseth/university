@@ -1,0 +1,66 @@
+#include <stdio.h>
+//Escribe aqui tu nombre, tu dni y el grupo en el que estas matriculado
+
+#define N1 4
+#define N2 3
+
+
+//Define aqui los tipos de datos pedidos en el ejercicio 1
+//
+//
+//
+//
+
+
+
+//Completa esta funcion como respuesta al ejercicio 2
+//Debes completar la cabecera y el cuerpo
+Subcadena (){
+
+}
+
+
+void intercambiaDiagonales(int n, int m[n][n]){
+//Completa el cuerpo de esta funcion como respuesta a la pregunta 4 del examen
+   
+}
+
+
+int main() {
+    int opc;
+    int m1[N1][N1]={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+    int m2[N2][N2]={{1,2,3},{4,5,6},{7,8,9}};
+    int f,c;
+      
+    printf("-----------------------------------------------------\n");
+    printf("EXAMEN DE FUNDAMENTOS DE PROGRAMACION I\n");
+    printf("-----------------------------------------------------\n");
+    do{
+        printf ("3.- Ejercicio Cadenas\n");
+        printf ("4.- Ejercicio Matrices\n");
+        printf ("5.- Salir\n");
+        scanf("%d",&opc);
+        switch(opc){
+            case 3://Completa esta parte del programa como respuesta al ejercicio 3
+                break;
+            case 4:
+                intercambiaDiagonales(N1,m1);
+                for(f=0;f<N1;f++) {
+                    for (c = 0; c < N1; c++) printf("%3d\t", m1[f][c]);
+                    printf("\n");
+                }
+                intercambiaDiagonales(N2,m2);
+                for(f=0;f<N2;f++) {
+                    for (c = 0; c < N2; c++) printf("%3d\t",m2[f][c]);
+                    printf("\n");
+                }
+                break;
+            case 5: printf("Biennnnnn.  Voy a a probar\n");
+                break;
+
+            default: printf("Opcion incorrecta. elija otra\n");
+
+        }
+    }while(opc!=5);
+    return 0;
+}
