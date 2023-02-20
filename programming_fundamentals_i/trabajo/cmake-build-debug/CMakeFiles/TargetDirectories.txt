@@ -1,3 +1,0 @@
-C:/Users/alvar/OneDrive - Universidad de Castilla-La Mancha/fundamentos_de_programacion_i/proyectos/trabajo/cmake-build-debug/CMakeFiles/trabajo.dir
-C:/Users/alvar/OneDrive - Universidad de Castilla-La Mancha/fundamentos_de_programacion_i/proyectos/trabajo/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/alvar/OneDrive - Universidad de Castilla-La Mancha/fundamentos_de_programacion_i/proyectos/trabajo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
