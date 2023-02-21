@@ -166,6 +166,7 @@ public class NumComplejo {
      *                          "real + imaginaria(i)".
      */
     public String toString() {
-        return this.real + " + " + this.imaginaria + "i";
+        return Math.round(this.real * 100.0)/100.0 + " + " +
+                Math.round(this.imaginaria * 100.0)/100.0 + "i";
     }
 }
