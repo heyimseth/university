@@ -94,8 +94,8 @@ public class NumComplejo {
     public static NumComplejo sumar(NumComplejo num1, NumComplejo num2) {
         NumComplejo resultado = new NumComplejo();
 
-        resultado.real = num1.real + num2.real;
-        resultado.imaginaria = num1.imaginaria + num2.imaginaria;
+        resultado.setReal(num1.getReal() + num2.getReal());
+        resultado.setImaginaria(num1.getImaginaria() + num2.getImaginaria());
 
         return resultado;
     }
@@ -111,8 +111,8 @@ public class NumComplejo {
     public static NumComplejo restar(NumComplejo num1, NumComplejo num2) {
         NumComplejo resultado = new NumComplejo();
 
-        resultado.real = num1.real - num2.real;
-        resultado.imaginaria = num1.imaginaria - num2.imaginaria;
+        resultado.setReal(num1.getReal() - num2.getReal());
+        resultado.setImaginaria(num1.getImaginaria() - num2.getImaginaria());
 
         return resultado;
     }
@@ -127,8 +127,24 @@ public class NumComplejo {
     public static NumComplejo multiplicar(NumComplejo num1, double escalar) {
         NumComplejo resultado = new NumComplejo();
 
-        resultado.real = num1.real * escalar;
-        resultado.imaginaria = num1.imaginaria * escalar;
+        resultado.setReal(num1.getReal() * escalar);
+        resultado.setImaginaria(num1.getImaginaria() * escalar);
+
+        return resultado;
+    }
+
+    /**
+     * Recibe un número complejo y un escalar, y calcula el producto entre
+     * ambos.
+     * @param num1          NumComplejo a usar como operando.
+     * @param escalar       Escalar por el que multiplicar num1.
+     * @return              NumComplejo con el resultado del producto.
+     */
+    public static NumComplejo multiplicar(NumComplejo num1, Escalar escalar) {
+        NumComplejo resultado = new NumComplejo();
+
+        resultado.setReal(num1.getReal() * escalar.getEscalar());
+        resultado.setImaginaria(num1.getImaginaria() * escalar.getEscalar());
 
         return resultado;
     }
@@ -142,8 +158,8 @@ public class NumComplejo {
     public static NumComplejo multiplicar(NumComplejo num1, NumComplejo num2) {
         NumComplejo resultado = new NumComplejo();
 
-        resultado.real = (num1.real * num2.real) - (num1.imaginaria * num2.imaginaria);
-        resultado.imaginaria = (num1.real * num2.imaginaria) + (num1.imaginaria * num2.real);
+        resultado.setReal((num1.real * num2.real) - (num1.imaginaria * num2.imaginaria));
+        resultado.setImaginaria((num1.real * num2.imaginaria) + (num1.imaginaria * num2.real));
 
         return resultado;
     }
@@ -165,6 +181,7 @@ public class NumComplejo {
      * @return              String con el número complejo en formato amigable,
      *                          "real + imaginaria(i)".
      */
+    @Override
     public String toString() {
         return Math.round(this.real * 100.0)/100.0 + " + " +
                 Math.round(this.imaginaria * 100.0)/100.0 + "i";

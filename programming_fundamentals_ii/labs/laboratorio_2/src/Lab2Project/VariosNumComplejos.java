@@ -19,7 +19,6 @@ public class VariosNumComplejos {
      * la parte real e imaginaria entre 1 y 16.5
      * @param n         cantidad de números complejos a generar. Debe ser mayor
      *                      que 0
-     *                      que 0
      */
     public VariosNumComplejos(int n) {
         if ( n > 0 ) {
