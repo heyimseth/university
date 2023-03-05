@@ -1,0 +1,21 @@
+Clase Persona.
+    -Propiedades o atributos:
+        ·nombre: String
+        ·edad: int
+        ·telefono: ¿tipo?
+
+    -Compila tu clase, si encuentras errores de compilación, arréglalos.
+    -Ahora añadimos algunos métodos:
+        ·getters y setters para todos los atributos.
+        ·Incluye el método mostrar() de forma que devuelva una cadena que imprime los valores de sus atributos
+         en formato 'bonito'.
+        ·Añade otro atributo más denominado añoNacimiento (int).
+        ·Escribe el método setter para añoNacimiento, que cambia el atributo correspondiente, calculando la
+         edad de la persona y asignándola al atributo correspondiente (edad). [Pista: Puedes usar la clase
+         java.util.Date].
+        ·Añadimos nombreDePila y apellido, junto con sus setters y getters.
+        ·Escribe un método constructName que hará que el atributo nombre sea una concatenación de los
+         anteriores. Ejemplo: nombre = "Julia" y apellido = "Flores", hará que nombre = "Julia Flores"
+         (Importante el blanco entre ambos). Este método también asignará la cadena construida al atributo
+         nombre.
+        ·No olvides comprobar que todo funciona como debe.
