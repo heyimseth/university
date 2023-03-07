@@ -11,7 +11,7 @@ public class Empleado {
 
 
 
-    /*########################### Constructores ##############################*/
+    /*######################################### Constructores ##############################################*/
     public Empleado(String nombre, String direccion, String fechaInicio,
                     double salario, String cargo) {
         this.nombre = nombre;
@@ -27,11 +27,11 @@ public class Empleado {
         this.telefono = telefono;
         this.email = email;
     }
-    /*########################################################################*/
+    /*######################################################################################################*/
 
 
 
-    /*######################### Getters y Setters ############################*/
+    /*####################################### Getters y setters ############################################*/
     public String getNombre() { return this.nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 
@@ -54,11 +54,11 @@ public class Empleado {
 
     public String getCargo() { return this.cargo; }
     public void setCargo(String cargo) { this.cargo = cargo; }
-    /*########################################################################*/
+    /*######################################################################################################*/
 
 
 
-    /*########################### Otros métodos ##############################*/
+    /*######################################### Otros métodos ##############################################*/
     @Override
     public String toString() {
         return this.nombre + " con dirección " + this.direccion + ", teléfono "
@@ -82,5 +82,5 @@ public class Empleado {
         return new Empleado(this.nombre, this.direccion, this.telefono,
                 this.email, this.fechaInicio, this.salario, this.cargo);
     }
-    /*########################################################################*/
+    /*######################################################################################################*/
 }
