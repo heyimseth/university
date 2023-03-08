@@ -1,6 +1,6 @@
 package PaqComercio;
 
-public class Empleado {
+public class Empleado implements Cloneable {
     private String nombre;
     private String direccion;
     private int telefono;
@@ -78,9 +78,10 @@ public class Empleado {
     }
 
     @Override
-    public Empleado clone() {
-        return new Empleado(this.nombre, this.direccion, this.telefono,
-                this.email, this.fechaInicio, this.salario, this.cargo);
+    public Empleado clone() throws CloneNotSupportedException {
+        // Implementar deep copy
+        return new Empleado(this.nombre, this.direccion, this.telefono, this.email, this.fechaInicio,
+            this.salario, this.cargo);
     }
     /*######################################################################################################*/
 }

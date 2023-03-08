@@ -183,8 +183,26 @@ public abstract class Comercio {
         this.ventasDiarias[d_actual-1][m_actual-1] = cantidad;
     }
 
-    //public String toStringStock() {}
-    //public String toStringVentasDiarias() {}
+    /**
+     * Devuelve una cadena en la que se indican las ventas diarias del mes actual.
+     * @return                  cadena con las ventas diarias del mes actual.
+     */
+    public StringBuffer toStringVentasDiarias() {
+        int m_actual = LocalDateTime.now().getMonthValue();
+        StringBuffer ventas = new StringBuffer("\tVentas diarias de "
+                + LocalDateTime.now().getMonth().toString() + "\n");
+
+        for ( int i = 0; i < this.ventasDiarias[m_actual-1].length; i++) {
+            if (i % 7 == 0) {
+                ventas.append("|\n");
+            }
+            ventas.append("| ").append(this.ventasDiarias[m_actual - 1][i]).append(" ");
+        }
+
+        return ventas;
+    }
+
+    public abstract String toStringStock(int producto);
 
     @Override
     public abstract Object clone();
