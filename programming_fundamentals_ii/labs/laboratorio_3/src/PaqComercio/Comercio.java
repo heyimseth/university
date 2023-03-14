@@ -1,13 +1,14 @@
 package PaqComercio;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
-public abstract class Comercio {
+abstract class Comercio {
     private String nombre;
     private String direccion;
     private String cif;
     private double[][] ventasDiarias;
-    private int[] stock;
+    protected int[] stock;
     private Empleado[] empleados;
 
 
@@ -85,27 +86,58 @@ public abstract class Comercio {
         return -1;
     }
 
+    // TODO la asignación de Stock la deben realizar las clases hijas
+//    /**
+//     * Obtener el stock de un artículo específico.
+//     * @param articulo          la posición del artículo a obtener el stock.
+//     * @return                  el stock del artículo.
+//     */
+//    public int getStock(int articulo) {
+//        if (articuloValido(articulo)) {
+//            return this.stock[articulo];
+//        }
+//
+//        return -1;
+//    }
+//
+//    /**
+//     * Asginar la cantidad de stock para un artículo específico.
+//     * @param articulo          la posición del artículo al que modificar la cantidad.
+//     * @param cantidad          la nueva cantidad del artículo.
+//     */
+//    public void setStock(int articulo, int cantidad) {
+//        if (articuloValido(articulo)) {
+//            this.stock[articulo] = cantidad;
+//        }
+//    }
+
     /**
-     * Obtener el stock de un artículo específico.
-     * @param articulo          la posición del artículo a obtener el stock.
-     * @return                  el stock del artículo.
+     * Busca y devuelve al empleado cuyo nombre coincida con el nombre indicado como parámetro. Devuelve un
+     * empleado nulo si no se ha encontrado a ninguno con ese nombre.
+     * @param nombre            el nombre del empleado.
+     * @return                  el empleado.
      */
-    public int getStock(int articulo) {
-        if (articuloValido(articulo)) {
-            return this.stock[articulo];
+    public Empleado getEmpleado(String nombre) {
+        Empleado e = null;
+        int i = 0;
+
+        while (e == null && i < empleados.length) {
+            if (empleados[i].getNombre().equals(nombre)) e = empleados[i];
+            i++;
         }
 
-        return -1;
+        return e;
     }
 
     /**
-     * Asginar la cantidad de stock para un artículo específico.
-     * @param articulo          la posición del artículo al que modificar la cantidad.
-     * @param cantidad          la nueva cantidad del artículo.
+     * Añade un empleado a la lista de empleados del comercio si este no es nulo y si el empleado indicado
+     * no es ya un empleado del comercio.
+     * @param empleado          el empleado a añadir a la lista de empleados.
      */
-    public void setStock(int articulo, int cantidad) {
-        if (articuloValido(articulo)) {
-            this.stock[articulo] = cantidad;
+    public void setEmpleado(Empleado empleado) {
+        if (empleado != null && this.getEmpleado(empleado.getNombre()) == null) {
+            this.empleados = Arrays.copyOf(this.empleados, this.empleados.length+1);
+            this.empleados[this.empleados.length-1] = empleado;
         }
     }
     /*######################################################################################################*/
@@ -131,7 +163,7 @@ public abstract class Comercio {
 
     /**
      * Calcula el total de ventas realizadas en un mes concreto indicado como parámetro. Si el mes no es
-     * correcto, la suma devuelta será -1.
+     * correcto (entero en el rango 1-12), la suma devuelta será -1.
      * @param mes               el mes en el que calcular el total.
      * @return                  el total de ventas realizadas en el mes indicado.
      */
@@ -202,10 +234,13 @@ public abstract class Comercio {
         return ventas;
     }
 
-    public abstract String toStringStock(int producto);
-
     @Override
-    public abstract Object clone();
+    public Object clone() {
+        // TODO implementar
+        return null;
+    }
+
+    public abstract String toStringStock();
 
     private boolean diaMesValido(int dia, int mes) {
         return mes >= 1 && mes <= 12 && dia >= 1 && dia <= 31;

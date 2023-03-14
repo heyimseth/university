@@ -28,10 +28,9 @@ public class VehiculoVenta extends Vehiculo {
 
 
     /*########################### Otros métodos ##############################*/
-    @Override
-    public VehiculoVenta clone() {
-        return new VehiculoVenta(super.getMarca(), super.getModelo(),
-                super.getMatricula(), this.precio, this.descuento);
+    public String toString() {
+        return super.getMarca() + " " + super.getModelo() + " tiene un precio de " + this.precio +
+                " y se le aplica un " + this.descuento + "% de descuento.";
     }
     /*########################################################################*/
 }

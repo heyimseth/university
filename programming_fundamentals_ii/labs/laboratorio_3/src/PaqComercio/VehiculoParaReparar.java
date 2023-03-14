@@ -1,6 +1,8 @@
 package PaqComercio;
 
-public class VehiculoParaReparar extends Vehiculo {
+import java.io.*;
+
+public class VehiculoParaReparar extends Vehiculo implements Serializable {
     private String averia;
     private boolean reparado;
     private int prioridad;
@@ -37,14 +39,16 @@ public class VehiculoParaReparar extends Vehiculo {
 
     /*########################### Otros métodos ##############################*/
     @Override
-    public VehiculoParaReparar clone() {
-        VehiculoParaReparar v = new VehiculoParaReparar(super.getMarca(),
-                super.getModelo(), super.getMatricula(), this.averia,
-                this.prioridad);
+    public String toString() {
+        StringBuffer sb = new StringBuffer(this.getMarca() + " " + this.getModelo());
 
-        v.setReparado(this.reparado);
+        if (this.reparado) {
+            sb.append(" ya ha sido reparado de " + this.averia + ".");
+        } else {
+            sb.append(" debe ser reparado de " + this.averia + " con prioridad " + this.prioridad + ".");
+        }
 
-        return v;
+        return sb.toString();
     }
     /*########################################################################*/
 }

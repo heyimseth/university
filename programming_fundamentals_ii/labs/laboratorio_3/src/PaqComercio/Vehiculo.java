@@ -1,6 +1,8 @@
 package PaqComercio;
 
-public abstract class Vehiculo {
+import java.io.*;
+
+abstract class Vehiculo {
     private String marca;
     private String modelo;
     private String matricula;
@@ -32,9 +34,26 @@ public abstract class Vehiculo {
 
     /*########################### Otros métodos ##############################*/
     @Override
-    public String toString() {
-        return "Vehiculo " + this.marca + " " + this.modelo + " con matrícula "
-                + this.matricula;
+    public abstract String toString();
+
+    public Object clone() {
+        Object copia = null;
+
+        try {
+            // Serializar objeto
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(bos);
+            out.writeObject(this);
+
+            // Deserializar objeto
+            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+            ObjectInputStream in = new ObjectInputStream(bis);
+            copia = in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return copia;
     }
 
     @Override
@@ -45,7 +64,5 @@ public abstract class Vehiculo {
 
         return false;
     }
-
-    public abstract Object clone();
     /*########################################################################*/
 }
