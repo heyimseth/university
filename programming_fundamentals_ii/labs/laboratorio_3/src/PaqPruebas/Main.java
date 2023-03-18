@@ -2,13 +2,14 @@ package PaqPruebas;
 
 import PaqComercio.*;
 
+import java.time.LocalDateTime;
+
 public class Main {
     public static void main(String[] args) {
         // Pruebas concesionario
         System.out.println("#####################");
         System.out.println("Pruebas concesionario");
         System.out.println("#####################");
-
         System.out.println("\nNuevo concesionario:");
         Concesionario concesionario = new Concesionario("Opel", "Calle Inventada, 32",
                 "72810956D", new Empleado("Pepe", "Calle Nueva, 12", 671829312,
@@ -41,11 +42,29 @@ public class Main {
         System.out.println("Vender vehículo con matrícula 1234-KGB:");
         System.out.println("Vendido: " + concesionario.venderVehiculo(0).toString());
         System.out.println(concesionario.toStringVehiculosVenta());
+        System.out.println("Mes con más ventas: " + concesionario.mesConMasVentas());
+        System.out.println("Ventas del mes actual: " +
+                concesionario.calcularVentasMes(LocalDateTime.now().getMonthValue()));
+        System.out.println("Total ventas: " + concesionario.calcularTotalVentas());
+        System.out.println("Ventas diarias: \n" + concesionario.toStringVentasDiarias());
+
+
 
         // Pruebas empleado
         System.out.println("#####################");
         System.out.println("Pruebas Empleado");
         System.out.println("#####################");
-
+        System.out.println("\nNuevo empleado:");
+        Empleado empleado = new Empleado("Juan", "Calle Inventada, 3", "18/03/2020",
+                3200, "Programador");
+        System.out.println(empleado.toString());
+        System.out.println("Comprobar si un empleado es igual a otro (iguales): " + empleado.equals(
+                new Empleado("Juan", "Calle Inventada, 3", "18/03/2020", 3200,
+                        "Programador")));
+        System.out.println("Comprobar si un empleado es igual a otro (distintos): " + empleado.equals(
+                new Empleado("Jorge", "Calle Programación, 7", "18/10/2013",
+                        2100, "Técnico")
+        ));
+        Empleado clonado = empleado.clone();
     }
 }

@@ -161,6 +161,7 @@ public class Concesionario extends Comercio {
             }
             this.v = Arrays.copyOf(this.v, this.v.length-1);
             this.stock = Arrays.copyOf(this.stock, this.stock.length-1);
+            super.actualizarVentas(vv.getPrecio());
         }
 
         return vv;

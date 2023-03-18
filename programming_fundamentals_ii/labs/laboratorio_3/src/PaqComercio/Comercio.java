@@ -212,7 +212,7 @@ abstract class Comercio {
     public void actualizarVentas(double cantidad) {
         int d_actual = LocalDateTime.now().getDayOfMonth(), m_actual = LocalDateTime.now().getMonthValue();
 
-        this.ventasDiarias[d_actual-1][m_actual-1] = cantidad;
+        this.ventasDiarias[m_actual-1][d_actual-1] = cantidad;
     }
 
     /**
@@ -221,14 +221,14 @@ abstract class Comercio {
      */
     public StringBuffer toStringVentasDiarias() {
         int m_actual = LocalDateTime.now().getMonthValue();
-        StringBuffer ventas = new StringBuffer("\tVentas diarias de "
+        StringBuffer ventas = new StringBuffer("Ventas diarias de "
                 + LocalDateTime.now().getMonth().toString() + "\n");
 
         for ( int i = 0; i < this.ventasDiarias[m_actual-1].length; i++) {
-            if (i % 7 == 0) {
-                ventas.append("|\n");
+            if (this.ventasDiarias[m_actual-1][i] != 0) {
+                ventas.append("Día ").append(i + 1).append(": ").append(this.ventasDiarias[m_actual - 1][i])
+                        .append("€\n");
             }
-            ventas.append("| ").append(this.ventasDiarias[m_actual - 1][i]).append(" ");
         }
 
         return ventas;
