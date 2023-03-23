@@ -2,6 +2,15 @@ package PaqComercio;
 
 import java.util.Arrays;
 
+/**
+ * Clase que define un Comercio de tipo Concesionario. El concesionario, además de la información típica de
+ * cualquier comercio, almacena también los vehículos que se encuentran a la venta, y los vehículos que han
+ * sido traídos para reparar.
+ *
+ * @see Comercio
+ * @see VehiculoVenta
+ * @see VehiculoParaReparar
+ */
 public class Concesionario extends Comercio {
     private VehiculoVenta[] v;
     private VehiculoParaReparar[] r;
@@ -48,6 +57,7 @@ public class Concesionario extends Comercio {
         return vehiculo;
     }
 
+
     /**
      * Busca y devuelve un vehículo que se encuentre a la venta y cuya matrícula coincida con la indicada,
      * o nulo si no se ha encontrado ninguno coincidente.
@@ -83,6 +93,7 @@ public class Concesionario extends Comercio {
         return sb.toString();
     }
 
+
     /**
      * Construye y devuelve una cadena con los vehículos que se encuentran pendientes de reparar.
      *
@@ -97,6 +108,7 @@ public class Concesionario extends Comercio {
 
         return sb.toString();
     }
+
 
     /**
      * Añade un vehículo al listado de vehículos a la venta si este no se encuentra ya en el listado de
@@ -113,6 +125,7 @@ public class Concesionario extends Comercio {
             this.stock[this.stock.length - 1] = 1;
         }
     }
+
 
     /**
      * Añade un vehículo al listado de vehículos a reparar si este no se encuentra ya en el listado de
@@ -140,6 +153,7 @@ public class Concesionario extends Comercio {
             }
         }
     }
+
 
     /**
      * Vende el vehículo en la posición indicada del listado. La posición debe encontrarse en el rango válido
@@ -190,6 +204,7 @@ public class Concesionario extends Comercio {
         return vr;
     }
 
+
     /**
      * Dada una posición del listado de vehículos a reparar, marca el vehículo como reparado.
      *
@@ -200,6 +215,7 @@ public class Concesionario extends Comercio {
             this.r[posicion].setReparado(true);
         }
     }
+
 
     /**
      * Construye y devuelve una cadena con el stock disponible de cada vehículo a la venta.
@@ -214,6 +230,26 @@ public class Concesionario extends Comercio {
         }
 
         return sb.toString();
+    }
+
+
+    /**
+     * Realiza una deep copy del concesionario.
+     * @return la deep copy del concesionario.
+     * @throws CloneNotSupportedException se realiza una llamada al método clone de la clase superior, es
+     * posible que se lance la excepción si la clase no implementa la interfaz Cloneable.
+     */
+    public Concesionario clone() throws CloneNotSupportedException {
+        Concesionario clone = (Concesionario) super.clone();
+
+        clone.v = new VehiculoVenta[this.v.length];
+        clone.r = new VehiculoParaReparar[this.r.length];
+
+        for (int i = 0; i < this.v.length; i++) {
+            clone.v[i] = this.v[i].clone();
+        }
+
+        return clone;
     }
 
 

@@ -1,9 +1,17 @@
 package PaqComercio;
 
+/**
+ * Clase que define un Comercio de tipo Restaurante. Un restaurante, además de la información típica de un
+ * comercio, también almacena el número de mesas disponibles, la capacidad total, y el menú diario para toda
+ * la semana.
+ *
+ * @see Comercio
+ */
 public class Restaurante extends Comercio {
     private String[] menuDiario;
     private int numMesas;
     private int capacidad;
+
 
     /**
      * Constructor de la clase Restaurante. Construye un nuevo restaurante a partir de su nombre, dirección,
@@ -51,6 +59,7 @@ public class Restaurante extends Comercio {
      * @return la capacidad del restaurante.
      */
     public int getCapacidad() { return this.capacidad; }
+
 
     /**
      * Asigna la capacidad que tendrá este Restaurante. Si la capacidad es inferior a 4, se asigna 4 por

@@ -1,15 +1,15 @@
 package PaqComercio;
 
-import java.io.Serializable;
-import java.io.ByteArrayOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-abstract class Comercio implements Serializable {
+/**
+ * Clase abstracta que define un Comercio. Almacena información que podría tener cualquier comercio, como el
+ * nombre, dirección, cif, ventas diarias realizadas el año presente, el stock o los empleados del comercio.
+ *
+ * @see Empleado
+ */
+abstract class Comercio implements Cloneable {
     private String nombre;
     private String direccion;
     private String cif;
@@ -47,6 +47,7 @@ abstract class Comercio implements Serializable {
         return this.nombre;
     }
 
+
     /**
      * Asignar nombre al comercio.
      *
@@ -55,6 +56,7 @@ abstract class Comercio implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
 
     /**
      * Obtener la dirección del comercio.
@@ -65,6 +67,7 @@ abstract class Comercio implements Serializable {
         return this.direccion;
     }
 
+
     /**
      * Asignar la dirección del comercio.
      *
@@ -73,6 +76,7 @@ abstract class Comercio implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
 
     /**
      * Obtener el CIF del comercio.
@@ -83,6 +87,7 @@ abstract class Comercio implements Serializable {
         return this.cif;
     }
 
+
     /**
      * Asignar el CIF del comercio.
      *
@@ -91,6 +96,7 @@ abstract class Comercio implements Serializable {
     public void setCif(String cif) {
         this.cif = cif;
     }
+
 
     /**
      * Obtener las ventas que se han realizado en el día y mes indicados.
@@ -106,6 +112,7 @@ abstract class Comercio implements Serializable {
 
         return -1;
     }
+
 
     /**
      * Busca y devuelve al empleado cuyo nombre coincida con el nombre indicado como parámetro. Devuelve un
@@ -125,6 +132,7 @@ abstract class Comercio implements Serializable {
 
         return e;
     }
+
 
     /**
      * Añade un empleado a la lista de empleados del comercio si este no es nulo y si el empleado indicado
@@ -157,6 +165,7 @@ abstract class Comercio implements Serializable {
         return total;
     }
 
+
     /**
      * Calcula el total de ventas realizadas en un mes concreto indicado como parámetro. Si el mes no es
      * correcto (entero en el rango 1-12), la suma devuelta será -1.
@@ -177,6 +186,7 @@ abstract class Comercio implements Serializable {
 
         return -1;
     }
+
 
     /**
      * Calcula el mes en el que se han realizado más ventas y lo devuelve en formato numérico (enero - 1,
@@ -202,6 +212,7 @@ abstract class Comercio implements Serializable {
         return mes;
     }
 
+
     /**
      * Actualiza las ventas del día y mes en curso, asignando como cantidad vendida en el día el valor pasado
      * por parámetro.
@@ -214,6 +225,7 @@ abstract class Comercio implements Serializable {
         this.ventasDiarias[m_actual - 1][d_actual - 1] = cantidad;
     }
 
+
     /**
      * Devuelve una cadena en la que se indican las ventas diarias del mes actual.
      *
@@ -221,53 +233,57 @@ abstract class Comercio implements Serializable {
      */
     public StringBuffer toStringVentasDiarias() {
         int m_actual = LocalDateTime.now().getMonthValue();
-        StringBuffer ventas = new StringBuffer("Ventas diarias de "
-                + LocalDateTime.now().getMonth().toString() + "\n");
+        StringBuffer ventas = new StringBuffer("Ventas diarias de " + LocalDateTime.now().getMonth().toString() + "\n");
 
         for (int i = 0; i < this.ventasDiarias[m_actual - 1].length; i++) {
             if (this.ventasDiarias[m_actual - 1][i] != 0) {
-                ventas.append("Día ").append(i + 1).append(": ").append(this.ventasDiarias[m_actual - 1][i])
-                        .append("€\n");
+                ventas.append("Día ").append(i + 1).append(": ").append(this.ventasDiarias[m_actual - 1][i]).append("€\n");
             }
         }
 
         return ventas;
     }
 
+
     /**
      * Realiza una deep copy del objeto.
      *
      * @return la deep copy del objeto.
+     * @throws CloneNotSupportedException se realiza una llamada al método clone de la clase superior, es
+     *                                    * posible que se lance la excepción si la clase no implementa la interfaz Cloneable.
      */
-    @Override
-    public Object clone() {
-        Object copia = null;
+    public Comercio clone() throws CloneNotSupportedException {
+        Comercio clone = (Comercio) super.clone();
 
-        try {
-            // Serializar objeto
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutputStream out = new ObjectOutputStream(bos);
-            out.writeObject(this);
+        // clonación de tipos de datos simples
+        clone.nombre = new String(this.nombre);
+        clone.direccion = new String(this.direccion);
+        clone.cif = new String(this.cif);
+        clone.empleados = new Empleado[this.empleados.length];
 
-            // Deserializar objeto y guardarlo en copia
-            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
-            ObjectInputStream in = new ObjectInputStream(bis);
-            copia = in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println(e);
+        // clonación de tipos de datos compuestos
+        for (int i = 0; i < this.empleados.length; i++) {
+            clone.empleados[i] = this.empleados[i].clone(); // el método Empleado.clone() clona serializando
         }
 
-        return copia;
-    } // TODO: intentar implementar con clone (de Object). Las posiciones de memoria en intellij no son
-    // correctas
+        for (int i = 0; i < this.stock.length; i++) {
+            clone.stock[i] = this.stock[i]; // datos primitivos, copiamos valor
+        }
+
+        for (int i = 0; i < this.ventasDiarias.length; i++) {
+            for (int j = 0; j < this.ventasDiarias[i].length; j++) {
+                clone.ventasDiarias[i][j] = this.ventasDiarias[i][j]; // datos primitivos, copiamos valor
+            }
+        }
+
+        return clone;
+    }
+
 
     public abstract String toStringStock();
 
+
     private boolean diaMesValido(int dia, int mes) {
         return mes >= 1 && mes <= 12 && dia >= 1 && dia <= 31;
-    }
-
-    private boolean articuloValido(int articulo) {
-        return articulo >= 0 && articulo < this.stock.length;
     }
 }

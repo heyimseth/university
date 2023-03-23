@@ -1,12 +1,13 @@
 package PaqComercio;
 
-import java.io.*;
-
-abstract class Vehiculo {
+/**
+ * Clase abstracta que define un vehículo. La información almacenada sobre un vehículo es la marca, modelo y
+ * matrícula.
+ */
+abstract class Vehiculo implements Cloneable {
     private String marca;
     private String modelo;
     private String matricula;
-
 
 
     public Vehiculo(String marca, String modelo, String matricula) {
@@ -14,7 +15,6 @@ abstract class Vehiculo {
         this.modelo = modelo;
         this.matricula = matricula;
     }
-
 
 
     public String getMarca() { return this.marca; }
@@ -30,23 +30,12 @@ abstract class Vehiculo {
     @Override
     public abstract String toString();
 
-    // TODO: implementar con clone (de Object)
-    public Object clone() {
-        Object copia = null;
+    public Vehiculo clone() throws CloneNotSupportedException {
+        Vehiculo copia = (Vehiculo) super.clone();
 
-        try {
-            // Serializar objeto
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutputStream out = new ObjectOutputStream(bos);
-            out.writeObject(this);
-
-            // Deserializar objeto
-            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
-            ObjectInputStream in = new ObjectInputStream(bis);
-            copia = in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        copia.marca = new String(this.marca);
+        copia.modelo = new String(this.modelo);
+        copia.matricula = new String(this.matricula);
 
         return copia;
     }

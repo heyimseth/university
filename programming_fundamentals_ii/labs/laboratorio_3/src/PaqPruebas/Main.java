@@ -5,7 +5,7 @@ import PaqComercio.*;
 import java.time.LocalDateTime;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         // Pruebas concesionario
         System.out.println("#####################");
         System.out.println("Pruebas concesionario");
@@ -47,7 +47,12 @@ public class Main {
                 concesionario.calcularVentasMes(LocalDateTime.now().getMonthValue()));
         System.out.println("Total ventas: " + concesionario.calcularTotalVentas());
         System.out.println("Ventas diarias: \n" + concesionario.toStringVentasDiarias());
-
+        Concesionario concClonado = concesionario.clone();
+        System.out.println("Nombre concesionario original: " + concesionario.getNombre());
+        System.out.println("Nombre concesionario clonado: " + concClonado.getNombre());
+        concClonado.setNombre("Otro nombre");
+        System.out.println("Nombre concesionario original: " + concesionario.getNombre());
+        System.out.println("Nombre concesionario clonado (ahora cambiado): " + concClonado.getNombre());
 
 
         // Pruebas empleado
@@ -65,7 +70,5 @@ public class Main {
                 new Empleado("Jorge", "Calle Programación, 7", "18/10/2013",
                         2100, "Técnico")
         ));
-        Empleado clonado = empleado.clone();
-
     }
 }
