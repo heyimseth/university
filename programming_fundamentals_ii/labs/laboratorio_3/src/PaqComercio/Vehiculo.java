@@ -9,17 +9,14 @@ abstract class Vehiculo {
 
 
 
-    /*########################### Constructores ##############################*/
     public Vehiculo(String marca, String modelo, String matricula) {
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
     }
-    /*########################################################################*/
 
 
 
-    /*######################### Getters y Setters ############################*/
     public String getMarca() { return this.marca; }
     public void setMarca(String marca) { this.marca = marca; }
 
@@ -28,14 +25,12 @@ abstract class Vehiculo {
 
     public String getMatricula() { return this.matricula; }
     public void setMatricula(String matricula) {this.matricula = matricula; }
-    /*########################################################################*/
 
 
-
-    /*########################### Otros métodos ##############################*/
     @Override
     public abstract String toString();
 
+    // TODO: implementar con clone (de Object)
     public Object clone() {
         Object copia = null;
 
@@ -64,5 +59,4 @@ abstract class Vehiculo {
 
         return false;
     }
-    /*########################################################################*/
 }

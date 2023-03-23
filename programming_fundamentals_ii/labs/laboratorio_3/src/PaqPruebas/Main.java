@@ -66,5 +66,6 @@ public class Main {
                         2100, "Técnico")
         ));
         Empleado clonado = empleado.clone();
+
     }
 }

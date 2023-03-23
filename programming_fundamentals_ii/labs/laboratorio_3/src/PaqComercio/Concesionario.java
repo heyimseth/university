@@ -7,17 +7,16 @@ public class Concesionario extends Comercio {
     private VehiculoParaReparar[] r;
 
 
-
-    /*######################################### Constructores ##############################################*/
     /**
      * Constructo de la clase Concesionario, que permite crear un comercio de tipo concesionario a partir de
      * su nombre, dirección, CIF, un empleado, y un vehículo a poner a la venta. Hace uso de
      * {@link Vehiculo#Vehiculo(String, String, String) Vehiculo}.
-     * @param nombre            el nombre del concesionario.
-     * @param direccion         la dirección del concesionario.
-     * @param cif               el CIF del concesionario.
-     * @param empleado          primer empleado del concesionario.
-     * @param vehiculo          primer vehículo a la venta en el concesionario.
+     *
+     * @param nombre    el nombre del concesionario.
+     * @param direccion la dirección del concesionario.
+     * @param cif       el CIF del concesionario.
+     * @param empleado  primer empleado del concesionario.
+     * @param vehiculo  primer vehículo a la venta en el concesionario.
      */
     public Concesionario(String nombre, String direccion, String cif, Empleado empleado,
                          VehiculoVenta vehiculo) {
@@ -27,16 +26,14 @@ public class Concesionario extends Comercio {
         super.stock[0] = 1;
         this.r = new VehiculoParaReparar[0];
     }
-    /*######################################################################################################*/
 
 
-
-    /*####################################### Getters y setters ############################################*/
     /**
      * Busca y devuelve un vehículo que se encuentre a la venta y cuya matrícula coincida con la indicada,
      * o nulo si no se ha encontrado ninguno coincidente.
-     * @param matricula         matrícula del vehículo a la venta.
-     * @return                  vehículo a la venta encontrado.
+     *
+     * @param matricula matrícula del vehículo a la venta.
+     * @return vehículo a la venta encontrado.
      */
     public VehiculoVenta getVehiculoVenta(String matricula) {
         VehiculoVenta vehiculo = null;
@@ -54,8 +51,9 @@ public class Concesionario extends Comercio {
     /**
      * Busca y devuelve un vehículo que se encuentre a la venta y cuya matrícula coincida con la indicada,
      * o nulo si no se ha encontrado ninguno coincidente.
-     * @param matricula         matrícula del vehículo a reparar.
-     * @return                  vehículo a reparar encontrado.
+     *
+     * @param matricula matrícula del vehículo a reparar.
+     * @return vehículo a reparar encontrado.
      */
     public VehiculoParaReparar getVehiculoParaReparar(String matricula) {
         VehiculoParaReparar vr = null;
@@ -69,14 +67,11 @@ public class Concesionario extends Comercio {
         return vr;
     }
 
-    /*######################################################################################################*/
 
-
-
-    /*######################################### Otros métodos ##############################################*/
     /**
      * Construye y devuelve una cadena con los vehículos que se encuentran a la venta.
-     * @return                  cadena con los vehículos a la venta.
+     *
+     * @return cadena con los vehículos a la venta.
      */
     public String toStringVehiculosVenta() {
         StringBuffer sb = new StringBuffer("Vehículos a la venta:\n\t");
@@ -90,7 +85,8 @@ public class Concesionario extends Comercio {
 
     /**
      * Construye y devuelve una cadena con los vehículos que se encuentran pendientes de reparar.
-     * @return                  cadena con los vehículos a reparar.
+     *
+     * @return cadena con los vehículos a reparar.
      */
     public String toStringVehiculosReparar() {
         StringBuffer sb = new StringBuffer("Vehículos pendientes de reparar:\n\t");
@@ -106,14 +102,15 @@ public class Concesionario extends Comercio {
      * Añade un vehículo al listado de vehículos a la venta si este no se encuentra ya en el listado de
      * vehículos a la venta o en el listado de vehículos a reparar. Se entiende que dos vehículos son iguales
      * si tienen la misma matrícula, independientemente del resto de información del vehículo.
-     * @param vehiculoVenta                 nuevo vehículo a poner a la venta.
+     *
+     * @param vehiculoVenta nuevo vehículo a poner a la venta.
      */
     public void addVenta(VehiculoVenta vehiculoVenta) {
         if (this.buscarVehiculo(vehiculoVenta.getMatricula()) == -1) {
-            this.v = Arrays.copyOf(this.v, this.v.length+1);
-            this.v[this.v.length-1] = vehiculoVenta;
-            this.stock = Arrays.copyOf(this.stock, this.stock.length+1);
-            this.stock[this.stock.length-1] = 1;
+            this.v = Arrays.copyOf(this.v, this.v.length + 1);
+            this.v[this.v.length - 1] = vehiculoVenta;
+            this.stock = Arrays.copyOf(this.stock, this.stock.length + 1);
+            this.stock[this.stock.length - 1] = 1;
         }
     }
 
@@ -121,19 +118,20 @@ public class Concesionario extends Comercio {
      * Añade un vehículo al listado de vehículos a reparar si este no se encuentra ya en el listado de
      * vehículos a la venta o en el listado de vehículos a reparar. Se entiende que dos vehículos son iguales
      * si tienen la misma matrícula, independientemente del resto de información del vehículo.
-     * @param vehiculoParaReparar           vehículo pendiente de reparar.
+     *
+     * @param vehiculoParaReparar vehículo pendiente de reparar.
      */
     public void addReparar(VehiculoParaReparar vehiculoParaReparar) {
         boolean insertado = false;
 
         if (this.buscarVehiculo(vehiculoParaReparar.getMatricula()) == -1) {
-            this.r = Arrays.copyOf(this.r, this.r.length+1);
+            this.r = Arrays.copyOf(this.r, this.r.length + 1);
 
             for (int i = 0; i < this.r.length && !insertado; i++) {
                 if (this.r[i] != null) {
                     if (this.r[i].getPrioridad() > vehiculoParaReparar.getPrioridad()) {
-                        for (int j = this.r.length-1; j > i; j--) {
-                            this.r[j] = this.r[j-1];
+                        for (int j = this.r.length - 1; j > i; j--) {
+                            this.r[j] = this.r[j - 1];
                         }
                     }
                 }
@@ -147,20 +145,21 @@ public class Concesionario extends Comercio {
      * Vende el vehículo en la posición indicada del listado. La posición debe encontrarse en el rango válido
      * de vehículos a la venta. En caso de que la posición indicada no sea válida, el valor devuelto será
      * nulo.
-     * @param posicion          posición en la que se encuentra el vehículo.
-     * @return                  vehículo vendido.
+     *
+     * @param posicion posición en la que se encuentra el vehículo.
+     * @return vehículo vendido.
      */
     public VehiculoVenta venderVehiculo(int posicion) {
         VehiculoVenta vv = null;
 
         if (posicion >= 0 && posicion < this.v.length) {
             vv = this.v[posicion];
-            for (int i = posicion; i < this.v.length-1; i++) {
-                this.v[i] = this.v[i+1];
-                this.stock[i] = this.stock[i+1];
+            for (int i = posicion; i < this.v.length - 1; i++) {
+                this.v[i] = this.v[i + 1];
+                this.stock[i] = this.stock[i + 1];
             }
-            this.v = Arrays.copyOf(this.v, this.v.length-1);
-            this.stock = Arrays.copyOf(this.stock, this.stock.length-1);
+            this.v = Arrays.copyOf(this.v, this.v.length - 1);
+            this.stock = Arrays.copyOf(this.stock, this.stock.length - 1);
             super.actualizarVentas(vv.getPrecio());
         }
 
@@ -172,8 +171,9 @@ public class Concesionario extends Comercio {
      * Busca el vehículo con la matrícula indicada en el listado de vehículos a reparar. Devuelve el vehículo
      * si lo ha encontrado y este se encuentra reparado, o nulo si no se ha encontrado el vehículo o todavía
      * no ha sido reparado.
-     * @param matricula         matrícula del vehículo a recoger.
-     * @return                  el vehículo.
+     *
+     * @param matricula matrícula del vehículo a recoger.
+     * @return el vehículo.
      */
     public VehiculoParaReparar recogerVehiculo(String matricula) {
         VehiculoParaReparar vr = null;
@@ -181,10 +181,10 @@ public class Concesionario extends Comercio {
 
         if (pos != -1 && this.r[pos].isReparado()) {
             vr = this.r[pos];
-            for (int i = pos; i < this.r.length-1; i++) {
-                this.r[i] = this.r[i+1];
+            for (int i = pos; i < this.r.length - 1; i++) {
+                this.r[i] = this.r[i + 1];
             }
-            this.r = Arrays.copyOf(this.r, this.r.length-1);
+            this.r = Arrays.copyOf(this.r, this.r.length - 1);
         }
 
         return vr;
@@ -192,7 +192,8 @@ public class Concesionario extends Comercio {
 
     /**
      * Dada una posición del listado de vehículos a reparar, marca el vehículo como reparado.
-     * @param posicion          la posición en el listado del vehículo a marcar como reparado.
+     *
+     * @param posicion la posición en el listado del vehículo a marcar como reparado.
      */
     public void repararVehiculo(int posicion) {
         if (posicion >= 0 && posicion < this.r.length && this.r[posicion] != null) {
@@ -202,7 +203,8 @@ public class Concesionario extends Comercio {
 
     /**
      * Construye y devuelve una cadena con el stock disponible de cada vehículo a la venta.
-     * @return                  cadena con el stock de cada vehículo.
+     *
+     * @return cadena con el stock de cada vehículo.
      */
     public String toStringStock() {
         StringBuffer sb = new StringBuffer();
@@ -234,5 +236,4 @@ public class Concesionario extends Comercio {
 
         return p;
     }
-    /*######################################################################################################*/
 }
