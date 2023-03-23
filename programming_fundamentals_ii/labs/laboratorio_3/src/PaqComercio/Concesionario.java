@@ -264,7 +264,7 @@ public class Concesionario extends Comercio {
             }
 
             for (int i = 0; i < this.r.length && p == -1; i++) {
-                if (this.r[i].getMatricula().equals(matricula)) {
+                if (this.r[i] != null && this.r[i].getMatricula().equals(matricula)) {
                     p = i;
                 }
             }

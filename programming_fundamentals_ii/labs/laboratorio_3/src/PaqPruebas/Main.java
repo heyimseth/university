@@ -47,12 +47,6 @@ public class Main {
                 concesionario.calcularVentasMes(LocalDateTime.now().getMonthValue()));
         System.out.println("Total ventas: " + concesionario.calcularTotalVentas());
         System.out.println("Ventas diarias: \n" + concesionario.toStringVentasDiarias());
-        Concesionario concClonado = concesionario.clone();
-        System.out.println("Nombre concesionario original: " + concesionario.getNombre());
-        System.out.println("Nombre concesionario clonado: " + concClonado.getNombre());
-        concClonado.setNombre("Otro nombre");
-        System.out.println("Nombre concesionario original: " + concesionario.getNombre());
-        System.out.println("Nombre concesionario clonado (ahora cambiado): " + concClonado.getNombre());
 
 
         // Pruebas empleado

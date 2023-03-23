@@ -33,9 +33,9 @@ abstract class Vehiculo implements Cloneable {
     public Vehiculo clone() throws CloneNotSupportedException {
         Vehiculo copia = (Vehiculo) super.clone();
 
-        copia.marca = new String(this.marca);
-        copia.modelo = new String(this.modelo);
-        copia.matricula = new String(this.matricula);
+        copia.marca = new String(this.marca.getBytes());
+        copia.modelo = new String(this.modelo.getBytes());
+        copia.matricula = new String(this.matricula.getBytes());
 
         return copia;
     }
