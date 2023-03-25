@@ -14,7 +14,7 @@ abstract class Comercio implements Cloneable {
     private String direccion;
     private String cif;
     private double[][] ventasDiarias;
-    protected int[] stock;
+    private int[] stock;
     private Empleado[] empleados;
 
 
@@ -149,6 +149,36 @@ abstract class Comercio implements Cloneable {
 
 
     /**
+     * Obtener el stock de productos actual.
+     * @return stock de productos.
+     */
+    public int[] getStock() { return this.stock; }
+
+
+    /**
+     * Incrementa en uno la cantidad de stock del producto en la posición indicada.
+     * @param posicion posición del producto del que incrementar el stock.
+     */
+    public void setStock(int posicion) {
+        if (posicion >= 0 && posicion < this.stock.length) {
+            this.stock[posicion]++;
+        }
+    }
+
+
+    /**
+     * Asigna la cantidad de stock indicada al producto en la posición indicada.
+     * @param posicion posición del producto.
+     * @param cantidad cantidad de stock del producto.
+     */
+    public void setStock(int posicion, int cantidad) {
+        if (posicion > 0 && posicion < this.stock.length) {
+            this.stock[posicion] = cantidad;
+        }
+    }
+
+
+    /**
      * Calcula el total de las ventas realizadas por el comercio.
      *
      * @return suma total de las ventas realizadas.
@@ -250,7 +280,8 @@ abstract class Comercio implements Cloneable {
      *
      * @return la deep copy del objeto.
      * @throws CloneNotSupportedException se realiza una llamada al método clone de la clase superior, es
-     *                                    * posible que se lance la excepción si la clase no implementa la interfaz Cloneable.
+     *                                    posible que se lance la excepción si la clase no implementa la
+     *                                    interfaz Cloneable.
      */
     public Comercio clone() throws CloneNotSupportedException {
         Comercio clone = (Comercio) super.clone();

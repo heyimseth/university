@@ -31,8 +31,7 @@ public class Concesionario extends Comercio {
                          VehiculoVenta vehiculo) {
         super(nombre, direccion, cif, empleado);
         this.v = new VehiculoVenta[1];
-        v[0] = vehiculo;
-        super.stock[0] = 1;
+        this.v[0] = vehiculo;
         this.r = new VehiculoParaReparar[0];
     }
 
@@ -121,8 +120,6 @@ public class Concesionario extends Comercio {
         if (this.buscarVehiculo(vehiculoVenta.getMatricula()) == -1) {
             this.v = Arrays.copyOf(this.v, this.v.length + 1);
             this.v[this.v.length - 1] = vehiculoVenta;
-            this.stock = Arrays.copyOf(this.stock, this.stock.length + 1);
-            this.stock[this.stock.length - 1] = 1;
         }
     }
 
@@ -170,10 +167,8 @@ public class Concesionario extends Comercio {
             vv = this.v[posicion];
             for (int i = posicion; i < this.v.length - 1; i++) {
                 this.v[i] = this.v[i + 1];
-                this.stock[i] = this.stock[i + 1];
             }
             this.v = Arrays.copyOf(this.v, this.v.length - 1);
-            this.stock = Arrays.copyOf(this.stock, this.stock.length - 1);
             super.actualizarVentas(vv.getPrecio());
         }
 
@@ -226,7 +221,7 @@ public class Concesionario extends Comercio {
         StringBuffer sb = new StringBuffer();
 
         for (int i = 0; i < v.length && v[i] != null; i++) {
-            sb.append(this.v[i].toString()).append(" - Stock:").append(super.stock[i]).append("\n");
+            sb.append(this.v[i].toString()).append(" - Stock: 1.\n");
         }
 
         return sb.toString();
@@ -237,7 +232,8 @@ public class Concesionario extends Comercio {
      * Realiza una deep copy del concesionario.
      * @return la deep copy del concesionario.
      * @throws CloneNotSupportedException se realiza una llamada al método clone de la clase superior, es
-     * posible que se lance la excepción si la clase no implementa la interfaz Cloneable.
+     *                                    posible que se lance la excepción si la clase no implementa la
+     *                                    interfaz Cloneable.
      */
     public Concesionario clone() throws CloneNotSupportedException {
         Concesionario clone = (Concesionario) super.clone();

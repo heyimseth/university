@@ -25,9 +25,6 @@ public class Empleado implements Serializable {
     private String cargo;
 
 
-
-    /*######################################### Constructores ##############################################*/
-
     /**
      * Constructor de la clase Empleado que utiliza el nombre, la dirección la fecha en que comenzó a
      * trabajar en el comercio, su salario y el cargo o puesto que ocupa.</br>
@@ -67,11 +64,7 @@ public class Empleado implements Serializable {
         this.telefono = telefono;
         this.email = email;
     }
-    /*######################################################################################################*/
 
-
-
-    /*####################################### Getters y setters ############################################*/
 
     /**
      * Obtener el nombre del empleado.
@@ -199,11 +192,7 @@ public class Empleado implements Serializable {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-    /*######################################################################################################*/
 
-
-
-    /*######################################### Otros métodos ##############################################*/
 
     /**
      * Construye una cadena indicando el nombre, la dirección, el teléfono, correo electrónico, fecha de
@@ -262,5 +251,4 @@ public class Empleado implements Serializable {
 
         return copia;
     }
-    /*######################################################################################################*/
 }

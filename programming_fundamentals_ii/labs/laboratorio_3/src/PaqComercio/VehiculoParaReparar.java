@@ -106,7 +106,7 @@ public class VehiculoParaReparar extends Vehiculo implements Serializable {
     public VehiculoParaReparar clone() throws CloneNotSupportedException {
         VehiculoParaReparar copia = (VehiculoParaReparar) super.clone();
 
-        copia.averia = new String(this.averia);
+        copia.averia = this.averia;
         copia.prioridad = this.prioridad;
         copia.reparado = this.reparado;
 

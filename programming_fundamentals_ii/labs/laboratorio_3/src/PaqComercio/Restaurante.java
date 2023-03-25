@@ -35,6 +35,7 @@ public class Restaurante extends Comercio {
 
     /**
      * Obtener el número de mesas de este Restaurante.
+     *
      * @return el número de mesas del restaurante.
      */
     public int getNumMesas() { return this.numMesas; }
@@ -43,6 +44,7 @@ public class Restaurante extends Comercio {
     /**
      * Asigna el número de mesas que tendrá este Restaurante. Si el número de mesas es menor que 1, por
      * defecto se asigna una mesa.
+     *
      * @param numMesas el número de mesas del restaurante.
      */
     public void setNumMesas(int numMesas) {
@@ -56,6 +58,7 @@ public class Restaurante extends Comercio {
 
     /**
      * Obtener la capacidad de este Restaurante.
+     *
      * @return la capacidad del restaurante.
      */
     public int getCapacidad() { return this.capacidad; }
@@ -64,6 +67,7 @@ public class Restaurante extends Comercio {
     /**
      * Asigna la capacidad que tendrá este Restaurante. Si la capacidad es inferior a 4, se asigna 4 por
      * defecto, puesto que siempre habrá, al menos una mesa.
+     *
      * @param capacidad la capacidad del restaurante.
      */
     public void setCapacidad(int capacidad) {
@@ -78,6 +82,7 @@ public class Restaurante extends Comercio {
     /**
      * Fija el menú del día de la semana indicado. El día debe ser un número positivo comprendido entre 1 y
      * 7, ambos incluidos.
+     *
      * @param menuDia menú del día.
      * @param dia día de la semana en la que fijar el menú.
      */
@@ -90,6 +95,7 @@ public class Restaurante extends Comercio {
 
     /**
      * Devuelve el menú del día indicado, o null si el día no está comprendido entre 1 y 7, ambos incluidos.
+     *
      * @param dia día de la semana del que obtener el menú.
      * @return menú del día indicado.
      */
@@ -102,9 +108,43 @@ public class Restaurante extends Comercio {
     }
 
 
-    // TODO: implementar
+    /**
+     * Devuelve una cadena indicando todos los menús disponibles, para cada día de la semana.
+     *
+     * @return cadena con los menús disponibles.
+     */
     @Override
     public String toStringStock() {
-        return null;
+        StringBuffer sb = new StringBuffer("Menús disponibles:\n");
+
+        for (int i = 0; i < this.menuDiario.length; i++) {
+            sb.append("\t-").append(this.menuDiario[i]).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+
+    /**
+     * Realiza una deep copy de este Restaurante.
+     *
+     * @return la copia del restaurante.
+     * @throws CloneNotSupportedException se realiza una llamada al método clone de la clase superior, es
+     *                                    posible que se lance la excepción si la clase no implementa la
+     *                                    interfaz Cloneable.
+     */
+    @Override
+    public Restaurante clone() throws CloneNotSupportedException {
+        Restaurante r = (Restaurante) super.clone();
+
+        r.menuDiario = new String[this.menuDiario.length];
+        for (int i = 0; i < this.menuDiario.length; i++) {
+            r.menuDiario[i] = this.menuDiario[i];
+        }
+
+        r.numMesas = this.numMesas;
+        r.capacidad = this.capacidad;
+
+        return r;
     }
 }
