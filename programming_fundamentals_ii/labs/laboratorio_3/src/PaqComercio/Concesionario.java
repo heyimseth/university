@@ -68,7 +68,7 @@ public class Concesionario extends Comercio {
         VehiculoParaReparar vr = null;
 
         for (int i = 0; i < this.r.length && vr == null; i++) {
-            if (this.r[i].getMatricula().equals(matricula)) {
+            if (this.r[i] != null && this.r[i].getMatricula().equals(matricula)) {
                 vr = this.r[i];
             }
         }
@@ -139,7 +139,7 @@ public class Concesionario extends Comercio {
 
             for (int i = 0; i < this.r.length && !insertado; i++) {
                 if (this.r[i] != null) {
-                    if (this.r[i].getPrioridad() > vehiculoParaReparar.getPrioridad()) {
+                    if (vehiculoParaReparar.getPrioridad() > this.r[i].getPrioridad()) {
                         for (int j = this.r.length - 1; j > i; j--) {
                             this.r[j] = this.r[j - 1];
                         }

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"PaqComercio","l":"Concesionario"},{"p":"PaqComercio","l":"Empleado"},{"p":"PaqComercio","l":"Restaurante"},{"p":"PaqComercio","l":"VehiculoParaReparar"},{"p":"PaqComercio","l":"VehiculoVenta"}];updateSearchResults();

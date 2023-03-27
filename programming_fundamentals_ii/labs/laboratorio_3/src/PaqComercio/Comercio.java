@@ -287,7 +287,7 @@ abstract class Comercio implements Cloneable {
         Comercio clone = (Comercio) super.clone();
 
         // clonación de tipos de datos simples
-        clone.nombre = new String(this.nombre);         // las cadenas son inmutables
+        clone.nombre = new String(this.nombre);
         clone.direccion = new String(this.direccion);
         clone.cif = new String(this.cif);
         clone.empleados = new Empleado[this.empleados.length];
@@ -298,12 +298,12 @@ abstract class Comercio implements Cloneable {
         }
 
         for (int i = 0; i < this.stock.length; i++) {
-            clone.stock[i] = this.stock[i]; // datos primitivos, copiamos valor
+            clone.stock[i] = this.stock[i];
         }
 
         for (int i = 0; i < this.ventasDiarias.length; i++) {
             for (int j = 0; j < this.ventasDiarias[i].length; j++) {
-                clone.ventasDiarias[i][j] = this.ventasDiarias[i][j]; // datos primitivos, copiamos valor
+                clone.ventasDiarias[i][j] = this.ventasDiarias[i][j];
             }
         }
 
