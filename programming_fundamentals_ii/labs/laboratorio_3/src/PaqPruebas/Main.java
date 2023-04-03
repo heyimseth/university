@@ -212,6 +212,8 @@ public class Main {
 
         System.out.println(concesionario1.toStringStock());
 
+        System.out.println(concesionario1.toStringVentasDiarias());
+
         Concesionario concesionario2 = concesionario1.clone();
         System.out.println("Concesionario1 == clonado: " + (concesionario1 == concesionario2));
     }

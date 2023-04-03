@@ -213,18 +213,13 @@ public class Concesionario extends Comercio {
 
 
     /**
-     * Construye y devuelve una cadena con el stock disponible de cada vehículo a la venta.
+     * Devuelve una cadena indicando la información de este Concesionario.
      *
-     * @return cadena con el stock de cada vehículo.
+     * @return cadena con la información del concesionario.
      */
-    public String toStringStock() {
-        StringBuffer sb = new StringBuffer();
-
-        for (int i = 0; i < v.length && v[i] != null; i++) {
-            sb.append(this.v[i].toString()).append(" - Stock: 1.\n");
-        }
-
-        return sb.toString();
+    @Override
+    public String toString() {
+        return "Concesionario " + super.toString();
     }
 
 
@@ -246,6 +241,23 @@ public class Concesionario extends Comercio {
         }
 
         return clone;
+    }
+
+
+    /**
+     * Construye y devuelve una cadena con el stock disponible de cada vehículo a la venta.
+     *
+     * @return cadena con el stock de cada vehículo.
+     */
+    @Override
+    public String toStringStock() {
+        StringBuffer sb = new StringBuffer();
+
+        for (int i = 0; i < v.length && v[i] != null; i++) {
+            sb.append(this.v[i].toString()).append(" - Stock: 1.\n");
+        }
+
+        return sb.toString();
     }
 
 

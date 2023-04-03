@@ -147,4 +147,15 @@ public class Restaurante extends Comercio {
 
         return r;
     }
+
+
+    /**
+     * Construye y devuelve una cadena con la información de este Restaurante.
+     *
+     * @return cadena con la información del restaurante.
+     */
+    @Override
+    public String toString() {
+        return "Restaurante " + super.toString();
+    }
 }

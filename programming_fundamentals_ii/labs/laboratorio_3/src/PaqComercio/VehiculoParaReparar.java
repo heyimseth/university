@@ -9,7 +9,7 @@ import java.io.*;
  *
  * @see Vehiculo
  */
-public class VehiculoParaReparar extends Vehiculo implements Serializable {
+public class VehiculoParaReparar extends Vehiculo {
     private String averia;
     private boolean reparado;
     private int prioridad;

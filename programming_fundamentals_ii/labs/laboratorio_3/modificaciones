@@ -1,0 +1,13 @@
+.-El vector de prioridades que esté siempre compactado.
+
+Crear más comercios. (Frutería)
+
+Crear la clase Centro Comercial como una matriz bidimensional de comercios, con seis plantas
+    (una especie de Corte Inglés).
+
+Crear la clase Asociación de Comerciantes de Castilla-La Mancha. Inventar los métodos.
+
+Crear clase Persona, de la que hereda Empleado.
+
+Si se borra instancia/objeto de Comercio, se deberían eliminar los empleados asociados pero
+    no las personas.

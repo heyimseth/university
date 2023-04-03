@@ -40,7 +40,7 @@ public class Empleado implements Serializable {
         this.nombre = nombre;
         this.direccion = direccion;
         this.fechaInicio = fechaInicio;
-        this.salario = salario > 0 ? salario : 0;
+        this.salario = salario < 0 ? salario : 0;
         this.cargo = cargo;
     }
 

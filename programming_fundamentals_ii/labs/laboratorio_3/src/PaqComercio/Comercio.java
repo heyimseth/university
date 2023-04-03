@@ -261,7 +261,7 @@ abstract class Comercio implements Cloneable {
      *
      * @return cadena con las ventas diarias del mes actual.
      */
-    public StringBuffer toStringVentasDiarias() {
+    public String toStringVentasDiarias() {
         int m_actual = LocalDateTime.now().getMonthValue();
         StringBuffer ventas = new StringBuffer("Ventas diarias de " + LocalDateTime.now().getMonth().toString() + "\n");
 
@@ -271,7 +271,7 @@ abstract class Comercio implements Cloneable {
             }
         }
 
-        return ventas;
+        return ventas.toString();
     }
 
 
@@ -308,6 +308,17 @@ abstract class Comercio implements Cloneable {
         }
 
         return clone;
+    }
+
+
+    /**
+     * Construye y devuelve una cadena con la información de este Comercio.
+     *
+     * @return cadena con la información del comercio.
+     */
+    @Override
+    public String toString() {
+        return this.nombre + " con CIF " +this.cif + " que se encuentra en " + this.direccion;
     }
 
 
