@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Ejercicio1 {
     private ArrayList ejerc1 = new ArrayList();
@@ -14,6 +16,8 @@ public class Ejercicio1 {
         this.imprimirArrayList();
         this.elementosPares();
         this.color4();
+        this.imprimirArrayList();
+        this.ordenar();
         this.imprimirArrayList();
         this.addEntero();
         this.imprimirArrayList();
@@ -64,6 +68,13 @@ public class Ejercicio1 {
     public void color4() {
         this.ejerc1.remove(4);
         System.out.println(this.ejerc1);
+    }
+
+    // Usando el método Collections.sort(...) vas a ordenar alfabéticamente los nombres de los colores.
+    // Muestra el contenido del array, después de ordenar, para comprobar.
+    public void ordenar() {
+        System.out.println("Ordenar elementos: ");
+        Collections.sort(this.ejerc1);
     }
 
     // Añade un entero cualquiera. Muestra el contenido para comprobar.
