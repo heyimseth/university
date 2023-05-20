@@ -5,17 +5,17 @@
 
 beats:
 	li $t0, 0xFFFF0400						# $t0: registro de estado del chip del reloj. (4-acelerómetro, 8-control)
-	ori $t1, $zero, 0x8000					#
+	ori $t1, $zero, 0x8000						#
 	sw $t1, 8($t0)							# inicia la lectura de pulsaciones
 	
 	bucle_pulsaciones:
 		lw $t1, 8($t0)
-		andi $t2, $t1, 0x4000				# aislar el bit de medición completada
+		andi $t2, $t1, 0x4000					# aislar el bit de medición completada
 		beq $t2, $zero, bucle_pulsaciones
 	
 	andi $a0, $t1, 0xFF						# guardar los bits que indican el pulso cardíaco en $v0
 	addi $v0, $zero, 42						#
-	syscall									# mostrar las pulsaciones por minuto
+	syscall								# mostrar las pulsaciones por minuto
 
 	jr $ra
 
@@ -37,7 +37,7 @@ display:
 	li $k0, 0xFFFF0400						# $k0: registro de estado del chip del reloj. (4-acelerómetro, 8-control)
 	lw $a0, 0($k0)
 	addi $v0, $zero, 40						#
-	syscall									# mostrar por pantalla la fecha y hora
+	syscall								# mostrar por pantalla la fecha y hora
 
 	bne $a0, $zero, mostrar_pasos
 	sw $zero, 4($k0)						# poner los pasos a 0
@@ -45,7 +45,7 @@ display:
 	mostrar_pasos:
 		lw $a0, 4($k0)
 		addi $v0, $zero, 41					#
-		syscall								# mostrar por pantalla la cantidad de pasos
+		syscall							# mostrar por pantalla la cantidad de pasos
 
 
 	# recuperar el valor previo en los registros modificados
