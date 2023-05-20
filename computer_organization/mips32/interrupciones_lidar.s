@@ -28,13 +28,13 @@ main:
 
 		# Desenmascarar interrupción
 		mfc0 $t2, $12
-		ori $t2, $t2, 0x2000			# desenmascarar IM4
+		ori $t2, $t2, 0x2000				# desenmascarar IM4
 		mtc0 $t2, $12
 
 		jal navigation					# Salta a la rutina que gestiona la navegación
 
 		li $v0, 10
-		syscall							# Fin de programa
+		syscall						# Fin de programa
 
 
 
@@ -87,9 +87,9 @@ main:
 		# Guardar dato
 		li $t0, 0xFFFF0100
 		lw $t0, 4($t0)					# $t0 contiene el dato leído
-		andi $k1, $t0, 0xFFFF 			# aislar distancia en $k1
+		andi $k1, $t0, 0xFFFF 				# aislar distancia en $k1
 		sra $k0, $t0, 16				#
-		andi $k0, $k0, 0x3FFF			# aislar ángulo en $k0
+		andi $k0, $k0, 0x3FFF				# aislar ángulo en $k0
 		
 		la $t0, data
 		add $t0, $t0, $k0				#
